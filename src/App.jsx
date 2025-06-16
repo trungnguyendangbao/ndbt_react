@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [inputValue, setInputValue] = useState("");
+  const [submittedText, setSubmittedText] = useState("");
+
+  const handleSubmit = () => {
+    setSubmittedText(inputValue);
+    console.log("Bạn đã nhập:", inputValue);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <div
+      className="app-container"
+      style={{ textAlign: "center", marginTop: "50px" }}
+    >
+      <h1>Form đơn giản</h1>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Nhập gì đó..."
+        style={{ padding: "8px", fontSize: "16px", width: "200px" }}
+      />
+      <br />
+      <br />
+      <button
+        onClick={handleSubmit}
+        style={{ padding: "10px 20px", fontSize: "16px" }}
+      >
+        Gửi
+      </button>
+      {submittedText && (
+        <p style={{ marginTop: "20px" }}>
+          Bạn đã nhập: <strong>{submittedText}</strong>
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
